@@ -1,5 +1,5 @@
 {
-  "name": "singleton-js",
+  "name": "@cocopina/singleton",
   "version": "0.0.1",
   "description": "A truly global, isomorphoic, JavaScript singleton class",
   "main": "index.js",
