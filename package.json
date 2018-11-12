@@ -11,5 +11,8 @@
     "isomorphic"
   ],
   "author": "Sahar Brodbeker <saharonb@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.9.0"
+  }
 }
