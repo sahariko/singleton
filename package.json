@@ -4,7 +4,7 @@
   "description": "A truly global, isomorphoic, JavaScript singleton class",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest -c configuration/jest.config.js",
     "lint": "eslint .",
     "build": "webpack --config configuration/webpack.config"
   },
@@ -18,8 +18,12 @@
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2"
