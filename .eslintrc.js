@@ -1,5 +1,6 @@
 module.exports = {
   extends: 'eslint:recommended',
+  root: true,
   parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module'
