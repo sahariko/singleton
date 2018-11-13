@@ -3,7 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PRODUCTION = 'production';
 
-const root = path.resolve(__dirname);
+const root = path.resolve(__dirname, '..');
 const environment = process.env.NODE_ENV || PRODUCTION;
 const isProduction = environment === PRODUCTION;
 
