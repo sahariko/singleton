@@ -56,7 +56,7 @@ jobs:
           name: Publish to NPM
           command: npm publish
 
- workflows:
+workflows:
   version: 2
   ci-cd:
     jobs:
