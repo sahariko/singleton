@@ -2,7 +2,8 @@ defaults: &defaults
   working_directory: ~/app
   docker:
     - image: circleci/node:8
- version: 2
+
+version: 2
 jobs:
   install:
     <<: *defaults
