@@ -1,7 +1,9 @@
 {
   "name": "@cocopina/singleton",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A truly global, isomorphoic, JavaScript singleton class",
+  "author": "Sahar Brodbeker <saharonb@gmail.com>",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
     "test": "jest -c configuration/jest.config.js",
@@ -12,8 +14,9 @@
     "singleton",
     "isomorphic"
   ],
-  "author": "Sahar Brodbeker <saharonb@gmail.com>",
-  "license": "ISC",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
