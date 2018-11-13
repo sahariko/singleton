@@ -1,0 +1,75 @@
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: circleci/node:8
+ version: 2
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm i
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Build package
+          command: npm run build
+      - save_cache:
+          key: build-cache-{{ checksum .Revision }}
+          paths:
+            - ./node_modules
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Test
+          command: npm t
+      - run:
+          name: Code lint
+          command: npm run lint
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: build-cache-{{ checksum .Revision }}
+      - run:
+          name: Set npm credentials
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run:
+          name: Publish to NPM
+          command: npm publish
+
+ workflows:
+  version: 2
+  ci-cd:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+      - test:
+          requires:
+            - install
+      - publish:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: master
