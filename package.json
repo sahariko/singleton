@@ -12,6 +12,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest -c configuration/jest.config.js",
+    "test:server": "npm run test -- src --env node",
     "lint": "eslint .",
     "build": "webpack --config configuration/webpack.config"
   },
