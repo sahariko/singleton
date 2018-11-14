@@ -3,7 +3,7 @@
  */
 
 import Singleton from '.';
-import { NO_ISTANCE_ERROR } from './constants';
+import { NO_ISTANCE_ERROR } from '../../lib/constants';
 
 let counter = 0;
 const VALUE = 1;

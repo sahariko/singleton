@@ -1,6 +1,6 @@
 import { globalScope } from '../../lib/env';
 import encode from '../../lib/encode';
-import { NO_ISTANCE_ERROR } from './constants';
+import { NO_ISTANCE_ERROR } from '../../lib/constants';
 
 /**
  * The global scope storage key for singleton instances;
