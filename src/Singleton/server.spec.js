@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import Singleton from '.';
 import { NO_ISTANCE_ERROR } from './constants';
 
@@ -15,7 +19,7 @@ class Test extends Singleton {
     }
 }
 
-describe('Singleton/browser', () => {
+describe('Singleton/server', () => {
     beforeEach(() => {
         Test.clear();
         counter = 0;
