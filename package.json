@@ -4,6 +4,11 @@
   "description": "A truly global, isomorphoic, JavaScript singleton class",
   "author": "Sahar Brodbeker <saharonb@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sahariko/singleton.git"
+  },
+  "homepage": "https://github.com/sahariko/singleton",
   "main": "index.js",
   "scripts": {
     "test": "jest -c configuration/jest.config.js",
