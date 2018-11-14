@@ -18,11 +18,11 @@ const Klass = asSingleton(Test);
 let counter = 0;
 const VALUE = 1;
 
-describe('asSingleton/browser', () => {
-    // beforeEach(() => {
-    //     Klass.clear();
-    //     counter = 0;
-    // });
+describe('asSingleton', () => {
+    beforeEach(() => {
+        Klass.clear();
+        counter = 0;
+    });
 
     it('Throws an error when trying to instantiate an instance', () => {
         const construct = () => {new Klass();};
