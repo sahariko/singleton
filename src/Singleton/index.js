@@ -12,7 +12,7 @@ const globalSingletonsKey = Symbol();
  * Boolean switch to allow the first initialization;
  * @type {Boolean}
  */
-let allowConstuction = false;
+let allowConstruction = false;
 
 /**
  * @class Singleton
@@ -21,7 +21,7 @@ let allowConstuction = false;
  */
 class Singleton {
     constructor() {
-        if (allowConstuction) return;
+        if (allowConstruction) return;
         throw new Error(NO_ISTANCE_ERROR);
     }
 
@@ -38,9 +38,9 @@ class Singleton {
 
         if (instance) return instance;
 
-        allowConstuction = true;
+        allowConstruction = true;
         instance = globalScope[globalSingletonsKey][key] = new this();
-        allowConstuction = false;
+        allowConstruction = false;
 
         return instance;
     }
