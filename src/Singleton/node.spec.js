@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import Singleton from '../..';
+import Singleton from '.';
 
 class Test extends Singleton {}
 
