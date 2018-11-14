@@ -2,6 +2,16 @@
 
 A truly global, isomorphoic, extendable JavaScript singleton class.
 
+## Table of Contents
+
+- [Installation and Usage](#installation-and-usage)
+    * [Extending the `Singleton` class](#extending-the-singleton-class)
+    * [Using the `asSingleton` decorator](#using-the-asSingleton-decorator)
+- [API](#api)
+    * [`getInstance [Function]`](#getinstance-function)
+    * [`instance [Object]`](#instance-object)
+    * [`clear [Function]`](#clear-function)
+
 ## Installation and Usage
 
 Install the package:
@@ -15,17 +25,11 @@ You can then extend your class to implement the `Singleton` class:
 ```js
 import Singleton from '@cocopina/singleton';
 
-class MyClass extends Singleton {
-    constructor(id) {
-        this.id = id;
-    }
-}
+class MyClass extends Singleton {}
 
-const a = new MyClass(1);
-const b = new MyClass(2);
+const a = MyClass.getInstance();
+const b = MyClass.getInstance();
 
-console.log(a.id); // 1
-console.log(b.id); // 1
 console.log(a === b); // true
 ```
 
@@ -36,18 +40,30 @@ You can alternatively use the `asSingleton` decorator like so:
 ```js
 import { asSingleton } from '@cocopina/singleton';
 
-class MyClass {
-    constructor(id) {
-        this.id = id;
-    }
-}
+class MyClass {}
 
 const MySingletonClass = asSingleton(MyClass);
 
-const a = new MySingletonClass(1);
-const b = new MySingletonClass(2);
+const a = MySingletonClass.getInstance();
+const b = MySingletonClass.getInstance();
 
-console.log(a.id); // 1
-console.log(b.id); // 1
 console.log(a === b); // true
 ```
+
+## API
+
+### `getInstance [Function]`
+
+Gets the singleton's instance.
+
+If none exists, will create a new one and store it on the global scope.
+
+#### `@return {Object}`
+
+### `instance [Object]`
+
+Gets the singleton's instance, an alias for `getInstance()`.
+
+### `clear [Function]`
+
+Clears the singleton's instance from the global scope.

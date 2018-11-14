@@ -38,8 +38,11 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Test
+          name: Run tests
           command: npm t
+      - run:
+          name: Run server-side tests
+          command: npm run test:server
       - run:
           name: Code lint
           command: npm run lint

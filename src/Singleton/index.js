@@ -1,15 +1,22 @@
-import { globalScope } from '../../lib/env';
-import encode from '../../lib/encode';
+import { NO_ISTANCE_ERROR, ALLOW_CONSTRUCTION } from '../../lib/constants';
+import singletonize from '../singletonize';
 
-function Singleton() {
-    const globalKey = encode(this.constructor.name);
-    globalScope.__SINGLETON__ = globalScope.__SINGLETON__ || {};
-
-	if (globalScope.__SINGLETON__[globalKey]) {
-        return globalScope.__SINGLETON__[globalKey];
+/**
+ * @class Singleton
+ * @classdesc A truly global, isomorphoic, singleton.
+ * @property {Object} instance Gets the singleton's instance, an alias for getInstance().
+ */
+class Singleton {
+    constructor() {
+        if (this[ALLOW_CONSTRUCTION]) return;
+        throw new Error(NO_ISTANCE_ERROR);
     }
 
-    globalScope.__SINGLETON__[globalKey] = this;
+    static get className() {
+        return this.name;
+    }
 }
+
+singletonize(Singleton);
 
 export default Singleton;

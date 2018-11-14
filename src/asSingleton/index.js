@@ -1,21 +1,22 @@
-import { globalScope } from '../../lib/env';
-import encode from '../../lib/encode';
+import { NO_ISTANCE_ERROR, ALLOW_CONSTRUCTION } from '../../lib/constants';
+import singletonize from '../singletonize';
 
 const asSingleton = (Klass) => {
-    const { constructor } = Klass;
-    const globalKey = encode(constructor.name);
-    globalScope.__SINGLETON__ = globalScope.__SINGLETON__ || {};
-
-    Klass.constructor = (...args) => {
-        if (globalScope.__SINGLETON__[globalKey]) {
-            return globalScope.__SINGLETON__[globalKey];
+    function Singleton() {
+        if (this[ALLOW_CONSTRUCTION]) {
+            Object.getPrototypeOf(Singleton.prototype).constructor.call(this);
+            return;
         }
 
-        globalScope.__SINGLETON__[globalKey] = this;
-        constructor(...args);
-    };
+        throw new Error(NO_ISTANCE_ERROR);
+    }
 
-    return Klass;
+    Singleton.prototype = Object.create(Klass.prototype);
+    Singleton.className = Klass.name;
+
+    singletonize(Singleton);
+
+    return Object.freeze(Singleton);
 };
 
 export default asSingleton;
