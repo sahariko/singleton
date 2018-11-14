@@ -7,6 +7,10 @@ A truly global, isomorphoic, extendable JavaScript singleton class.
 - [Installation and Usage](#installation-and-usage)
     * [Extending the `Singleton` class](#extending-the-singleton-class)
     * [Using the `asSingleton` decorator](#using-the-asSingleton-decorator)
+- [API](#api)
+    * [`getInstance [Function]`](#getinstance-function)
+    * [`instance [Object]`](#instance-object)
+    * [`clear [Function]`](#clear-function)
 
 ## Installation and Usage
 
@@ -54,7 +58,7 @@ Gets the singleton's instance.
 
 If none exists, will create a new one and store it on the global scope.
 
-#### `@return` {Object}
+#### `@return {Object}`
 
 ### `instance [Object]`
 
