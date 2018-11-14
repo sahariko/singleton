@@ -1,21 +1,56 @@
 import { globalScope } from '../../lib/env';
 import encode from '../../lib/encode';
+import { NO_ISTANCE_ERROR, GLOBAL_SINGLETONS } from '../../lib/constants';
+
+/**
+ * Boolean switch to allow the first initialization;
+ * @type {Boolean}
+ */
+let allowConstruction = false;
 
 const asSingleton = (Klass) => {
-    const { constructor } = Klass;
-    const globalKey = encode(constructor.name);
-    globalScope.__SINGLETON__ = globalScope.__SINGLETON__ || {};
-
-    Klass.constructor = (...args) => {
-        if (globalScope.__SINGLETON__[globalKey]) {
-            return globalScope.__SINGLETON__[globalKey];
+    function Singleton() {
+        if (allowConstruction) {
+            Object.getPrototypeOf(Singleton.prototype).constructor.call(this);
+            return;
         }
 
-        globalScope.__SINGLETON__[globalKey] = this;
-        constructor(...args);
+        throw new Error(NO_ISTANCE_ERROR);
+    }
+
+    Singleton.prototype = Object.create(Klass.prototype);
+
+    Singleton.getInstance = function() {
+        globalScope[GLOBAL_SINGLETONS] = globalScope[GLOBAL_SINGLETONS] || {};
+
+        const key = encode(Klass.name);
+        let instance = globalScope[GLOBAL_SINGLETONS][key];
+
+        if (instance) return instance;
+
+        allowConstruction = true;
+        instance = globalScope[GLOBAL_SINGLETONS][key] = new this();
+        allowConstruction = false;
+
+        return instance;
     };
 
-    return Klass;
+    /**
+     * Clears the singleton's instance from the global scope.
+     */
+    Singleton.clear = function() {
+        globalScope[GLOBAL_SINGLETONS] = globalScope[GLOBAL_SINGLETONS] || {};
+
+        const key = encode(Klass.name);
+
+        globalScope[GLOBAL_SINGLETONS][key] = null;
+    };
+
+    Object.defineProperty(Singleton, 'instance', {
+        get: () => Singleton.getInstance()
+    });
+
+    return Object.freeze(Singleton);
 };
 
 export default asSingleton;
