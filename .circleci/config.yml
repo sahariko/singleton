@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           key: build-cache-{{ .Revision }}
           paths:
-            - ./node_modules
+            - ./dist
   test:
     <<: *defaults
     steps:

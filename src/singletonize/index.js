@@ -1,4 +1,4 @@
-import { globalScope } from '../../lib/env';
+import { globalScope } from '@cocopina/environment';
 import encode from '../../lib/encode';
 import { GLOBAL_SINGLETONS, ALLOW_CONSTRUCTION } from '../../lib/constants';
 
