@@ -1,8 +1,12 @@
-import Singleton from '..';
+/**
+ * @jest-environment node
+ */
+
+import Singleton from '../..';
 
 class Test extends Singleton {}
 
-describe('Singleton/browser', () => {
+describe('Singleton/node', () => {
     it('Creates only one instance', () => {
         const a = new Test();
         const b = new Test();
