@@ -28,7 +28,7 @@ jobs:
           name: Build package
           command: npm run build
       - save_cache:
-          key: build-cache-{{ checksum .Revision }}
+          key: build-cache-{{ .Revision }}
           paths:
             - ./node_modules
   test:
@@ -48,7 +48,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: build-cache-{{ checksum .Revision }}
+          key: build-cache-{{ .Revision }}
       - run:
           name: Set npm credentials
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
