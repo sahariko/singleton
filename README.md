@@ -1,4 +1,4 @@
-# Singleton [![](https://img.shields.io/npm/v/@cocopina/singleton.svg?colorA=cb3837&colorB=474a50)](https://www.npmjs.com/package/singleton)
+# Singleton [![](https://img.shields.io/npm/v/@cocopina/singleton.svg?colorA=cb3837&colorB=474a50)](https://www.npmjs.com/package/@cocopina/singleton)
 
 A truly global, isomorphoic, extendable JavaScript singleton class.
 
