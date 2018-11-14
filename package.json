@@ -38,6 +38,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@cocopina/environment": "^1.0.0"
+    "@cocopina/environment": "^1.0.1"
   }
 }
